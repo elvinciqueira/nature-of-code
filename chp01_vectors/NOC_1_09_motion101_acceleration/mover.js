@@ -6,12 +6,16 @@ class Mover {
   constructor() {
     this.position = createVector(width / 2, height / 2);
     this.velocity = createVector();
-    this.aceleration = createVector(-0.001, 0.01);
-    this.topspeed = 10;
+    this.acceleration = createVector();
+    this.topspeed = 5;
   }
 
   update() {
-    this.velocity.add(this.aceleration); //Motion 101: Velocity changes by aceleration
+    var angle = random(TWO_PI);
+    this.acceleration = createVector(cos(angle), sin(angle));
+    this.acceleration.mult(random(2));
+
+    this.velocity.add(this.acceleration); //Motion 101: Velocity changes by aceleration
     this.velocity.limit(this.topspeed);
     this.position.add(this.velocity); //Motion 101: Location changes by velocity
   }
